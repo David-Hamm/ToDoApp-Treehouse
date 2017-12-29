@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link href='styles/main.css' rel='stylesheet' type="text/css">
+</head>
+<body ng-app="todoListApp">
+  <h1 ng-click="helloWorld()">My TODOs</h1>
+  <div ng-controller="mainCtrl" class="list">
+    <div class="add" ng-click="addTodo()"><a href="">Add a New Task</a></div>
+    <div ng-repeat="todo in todos" class="item" ng-class="{'editing-item' : editing , 'edited' : todo.edited}"> <!-- Adds class name in key if value evaluates to true -->
+      <input ng-model="todo.completed" type="checkbox"/>
+      <label ng-click="editing = true" ng-show="show = !editing" class="" ng-click="helloWorld()">{{todo.name}}</label>
+      <input ng-change="todo.edited = true" ng-blur="editing = false"  ng-show="editing" ng-model="todo.name" class="editing-label" type="text"/>
+      <div class="actions">
+        <a href="" ng-click="saveTodo(todo, $index)">Save</a>
+        <a href="" ng-click="deleteTodo(todo, $index)" class="Delete">delete</a>
+      </div>
+    </div>
+  </div>
+  
+  <script src="vendor/angular.js" type="text/javascript"></script>
+  <script src="scripts/app.js" type="text/javascript"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/services/data-service.js"></script>
+</body>
+</html>
